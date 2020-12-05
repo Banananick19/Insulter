@@ -15,11 +15,14 @@ class Window(tk.Frame):
     def make_widgets(self):
         for key in BUTTONS:
             if hasattr(self, BUTTONS[key]):
-                tk.Button(self, text=key, command=eval('self.'+ BUTTONS[key])).pack()
+                tk.Button(self, text=key, command=eval('self.' + BUTTONS[key])).pack()
 
     def on_show_insult(self):
-        line = random.choice(self.lines)
-        messagebox.showinfo('Оскорбление', line)
+        try:
+            line = random.choice(self.lines)
+            messagebox.showinfo('Оскорбление', line)
+        except:
+            messagebox.showinfo(EMPTY_LINES_MESSAGE, EMPTY_LINES_MESSAGE)
 
 def main():
     root = tk.Tk()
